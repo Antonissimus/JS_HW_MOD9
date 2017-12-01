@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#requestForm {
+    
+    width: 250px;
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.galery {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+
+}
+
+.buttons {
+    display:flex;
+    justify-content: space-between;
+    width: 200px;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+p {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+li {
+    border: 1px solid black;
+    display: block;
+    list-style: none;
+}
+
+img{
+    width: 100%;
+}
