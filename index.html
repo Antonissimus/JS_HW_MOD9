@@ -17,11 +17,25 @@
         <button class="latest-Btn">Latest</button>
         <button class="toprated-Btn">Top-rated</button>
     </div>
-
-    <ul class="galery">
+    
+    <ul id="galery-container">
 
     </ul>
+    
+    <script type="text/lodash" id="galery-item">
+    <li>
+        <img src="<%- posterUrl %>" alt="poster"> 
+        <h2><%- title %></h2>    
+<p>
+    <%- description.substr(0,100) %>
+</p>
+        <p>Release date: <%- date %></p>    
+        <p>Rating: <%- rating %></p>
+    </li>
+    </script>
+    
 
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 

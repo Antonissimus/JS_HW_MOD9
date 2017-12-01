@@ -6,7 +6,7 @@ const topRatedUrl = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiK
 const queryInput = document.querySelector('#requestInput');
 const searchButton = document.querySelector('#submitButton');
 const form = document.querySelector('#requestForm');
-const galery = document.querySelector('.galery');
+const galery = document.querySelector('#galery-container');
 const popularBtn = document.querySelector('.popular-Btn');
 const latestBtn = document.querySelector('.latest-Btn');
 const topRatedBtn = document.querySelector('.toprated-Btn');
@@ -33,7 +33,7 @@ const makeDataObject = dataFromBase => {
         return cardObj;
     })
     return cards;
-}
+};
 
 //Выбор нужных полей из запроса 'latest'
 const makeDataLatest = dataFromBase => {
@@ -46,22 +46,18 @@ const makeDataLatest = dataFromBase => {
     }
     let cards = [card];
     return cards;
-}
+};
 
 //рендеринг галереи
-const renderGalery = (galeryItem, parentElem) => {
+const renderGalery = (items, parentElem) => {
+    const galeryItem = document.querySelector('#galery-item').textContent.trim();
+    const compiled = _.template(galeryItem);
     let htmlString = '';
-    galeryItem.forEach(item => {
-        htmlString += `<li>
-        <img src="${item.posterUrl}" alt = "poster">
-        <h2>${item.title}</h2>
-        <p>${item.description.substr(0,100)}</p>
-        <p>Release date: ${item.date}</p>
-        <p>Rating: ${item.rating}</p>
-        </li>`
+    items.forEach(item => {
+        htmlString += compiled(item);
     });
     parentElem.innerHTML = htmlString;
-}
+};
 
 //ивент подтверждения формы
 form.addEventListener('submit', (evt) => {
@@ -101,3 +97,4 @@ topRatedBtn.addEventListener('click', () => {
             renderGalery(selectedData, galery);
         });
 });
+
