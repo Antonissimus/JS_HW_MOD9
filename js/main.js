@@ -37,19 +37,15 @@ const startSearch = (searchString) =>
     .catch(err => console.log(err));
 
 //выбор нужных полей из полученных данных    
-const makeDataObject = dataFromBase => {
-    let cards = dataFromBase.map(card => {
-        let cardObj = {
-            title: card.title,
-            posterUrl: `https://image.tmdb.org/t/p/w500${card.poster_path}`,
-            description: card.overview,
-            date: card.release_date,
-            rating: card.vote_average
-        }
-        return cardObj;
-    })
-    return cards;
-};
+const makeDataObject = dataFromBase =>
+    dataFromBase.map(card => ({
+        title: card.title,
+        posterUrl: `https://image.tmdb.org/t/p/w500${card.poster_path}`,
+        description: card.overview,
+        date: card.release_date,
+        rating: card.vote_average
+    }));
+
 
 //Выбор нужных полей из запроса 'latest'
 const makeDataLatest = dataFromBase => {
@@ -116,13 +112,11 @@ topRatedBtn.addEventListener('click', () => {
 
 if (tryStorage()) {
     let currentTheme = localStorage.getItem('theme');
-
     if (currentTheme) {
         styleBlock.href = currentTheme;
     } else {
         styleBlock.href = "css/light-theme.css";
     };
-
 } else {
     console.log('localStorage не поддерживается')
 };
