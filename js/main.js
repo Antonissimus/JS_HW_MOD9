@@ -10,9 +10,25 @@ const galery = document.querySelector('#galery-container');
 const popularBtn = document.querySelector('.popular-Btn');
 const latestBtn = document.querySelector('.latest-Btn');
 const topRatedBtn = document.querySelector('.toprated-Btn');
+const lightBtn = document.querySelector('.light-theme');
+const darkBtn = document.querySelector('.dark-theme');
+const styleBlock = document.querySelector('.color-theme');
+
+
+
+//проверка поддержки localStorage
+
+const tryStorage = () => {
+    try {
+        return 'localStorage' in window && window['localStorage'] !== null;
+    } catch (e) {
+        return false;
+    }
+};
+
 
 //запрос на сайт
-const startSearch = (searchString) =>                   
+const startSearch = (searchString) =>
     fetch(searchString)
     .then(response => {
         if (response.ok) return response.json();
@@ -98,3 +114,42 @@ topRatedBtn.addEventListener('click', () => {
         });
 });
 
+if (tryStorage()) {
+    let currentTheme = localStorage.getItem('theme');
+
+    if (currentTheme) {
+        styleBlock.href = currentTheme;
+    } else {
+        styleBlock.href = "css/light-theme.css";
+    };
+
+    if (styleBlock.getAttribute('href') == "css/light-theme.css") {
+        lightBtn.classList.add('selected');
+        darkBtn.classList.remove('selected');
+    } else {
+        darkBtn.classList.add('selected');
+        lightBtn.classList.remove('selected');
+
+    };
+
+} else {
+    console.log('localStorage не поддерживается')
+};
+console.log();
+lightBtn.addEventListener('click', () => {
+    styleBlock.href = "css/light-theme.css";
+    lightBtn.classList.add('selected');
+    darkBtn.classList.remove('selected');
+    if (tryStorage()) {
+        localStorage.setItem('theme', 'css/light-theme.css')
+    };
+});
+
+darkBtn.addEventListener('click', () => {
+    styleBlock.href = "css/dark-theme.css";
+    darkBtn.classList.add('selected');
+    lightBtn.classList.remove('selected');
+    if (tryStorage()) {
+        localStorage.setItem('theme', 'css/dark-theme.css')
+    };
+});

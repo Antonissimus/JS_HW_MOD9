@@ -20,7 +20,7 @@
 
 .buttons {
     display:flex;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 200px;
     margin: auto;
     margin-bottom: 20px;
@@ -32,11 +32,17 @@ p {
 }
 
 li {
-    border: 1px solid black;
+    
     display: block;
     list-style: none;
 }
 
 img{
     width: 100%;
+}
+
+.selected {
+    -webkit-box-shadow: 0px 0px 5px 3px rgba(102, 217, 102, 1);
+    -moz-box-shadow: 0px 0px 5px 3px rgba(102, 217, 102, 1);
+    box-shadow: 0px 0px 5px 3px rgba(102, 217, 102, 1);
 }
