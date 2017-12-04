@@ -26,6 +26,25 @@ const tryStorage = () => {
     }
 };
 
+if (tryStorage()) {
+    let currentTheme = localStorage.getItem('theme');
+    if (currentTheme) {
+        styleBlock.href = currentTheme;
+    } else {
+        styleBlock.href = "css/light-theme.css";
+    };
+} else {
+    console.log('localStorage не поддерживается')
+};
+
+if (styleBlock.getAttribute('href') == "css/light-theme.css") {
+    lightBtn.classList.add('selected');
+    darkBtn.classList.remove('selected');
+} else {
+    darkBtn.classList.add('selected');
+    lightBtn.classList.remove('selected');
+
+};
 
 //запрос на сайт
 const startSearch = (searchString) =>
@@ -110,25 +129,6 @@ topRatedBtn.addEventListener('click', () => {
         });
 });
 
-if (tryStorage()) {
-    let currentTheme = localStorage.getItem('theme');
-    if (currentTheme) {
-        styleBlock.href = currentTheme;
-    } else {
-        styleBlock.href = "css/light-theme.css";
-    };
-} else {
-    console.log('localStorage не поддерживается')
-};
-
-if (styleBlock.getAttribute('href') == "css/light-theme.css") {
-    lightBtn.classList.add('selected');
-    darkBtn.classList.remove('selected');
-} else {
-    darkBtn.classList.add('selected');
-    lightBtn.classList.remove('selected');
-
-};
 
 lightBtn.addEventListener('click', () => {
     styleBlock.href = "css/light-theme.css";
