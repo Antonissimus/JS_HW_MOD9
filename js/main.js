@@ -26,6 +26,8 @@ const tryStorage = () => {
     }
 };
 
+// установка начальных условий
+
 if (tryStorage()) {
     let currentTheme = localStorage.getItem('theme');
     if (currentTheme) {
