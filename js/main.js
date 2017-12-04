@@ -123,19 +123,19 @@ if (tryStorage()) {
         styleBlock.href = "css/light-theme.css";
     };
 
-    if (styleBlock.getAttribute('href') == "css/light-theme.css") {
-        lightBtn.classList.add('selected');
-        darkBtn.classList.remove('selected');
-    } else {
-        darkBtn.classList.add('selected');
-        lightBtn.classList.remove('selected');
-
-    };
-
 } else {
     console.log('localStorage не поддерживается')
 };
-console.log();
+
+if (styleBlock.getAttribute('href') == "css/light-theme.css") {
+    lightBtn.classList.add('selected');
+    darkBtn.classList.remove('selected');
+} else {
+    darkBtn.classList.add('selected');
+    lightBtn.classList.remove('selected');
+
+};
+
 lightBtn.addEventListener('click', () => {
     styleBlock.href = "css/light-theme.css";
     lightBtn.classList.add('selected');
